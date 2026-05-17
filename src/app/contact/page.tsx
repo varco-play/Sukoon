@@ -96,7 +96,7 @@ export default function ContactPage() {
             <div className="relative h-80 md:h-96 border border-brand-gold/20 overflow-hidden">
               <iframe
                 title="Sukoon Cafe на карте"
-                src="https://maps.google.com/maps?q=Tashkent+Amir+Temur&t=m&z=14&output=embed&iwloc=near"
+                src="https://maps.google.com/maps?q=Astrobod+84M,+Yunusabad,+Tashkent,+Uzbekistan&t=m&z=16&output=embed&iwloc=near"
                 className="w-full h-full grayscale opacity-60 border-0"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"

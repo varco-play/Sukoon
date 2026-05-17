@@ -31,7 +31,7 @@ export default function Location() {
               {/* Placeholder for Google Maps iframe */}
               <iframe
                 title="Sukoon Cafe на карте"
-                src="https://maps.google.com/maps?q=Tashkent+Amir+Temur+107&t=m&z=15&output=embed&iwloc=near"
+                src="https://maps.google.com/maps?q=Astrobod+84M,+Yunusabad,+Tashkent,+Uzbekistan&t=m&z=16&output=embed&iwloc=near"
                 className="w-full h-full grayscale opacity-70 border-0"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
