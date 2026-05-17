@@ -4,20 +4,20 @@ import { useState, useRef, useEffect } from 'react'
 import Link from 'next/link'
 
 // ─── TYPES ─────────────────────────────────────────────────────────
-interface Chapter     { id: string; label: string; emoji: string }
+interface Chapter     { id: string; label: string }
 interface ChapterMeta { title: string; subtitle: string }
 interface MenuItem    { id: number; chapter: string; sub: string; name: string; price: number }
 
 // ─── FILTER CHAPTERS ───────────────────────────────────────────────
 const CHAPTERS: Chapter[] = [
-  { id: 'all',      label: 'Все блюда',   emoji: '◆'  },
-  { id: 'european', label: 'Европейский', emoji: '🌿' },
-  { id: 'eastern',  label: 'Восточный',   emoji: '☪️'  },
-  { id: 'panasian', label: 'Паназия',     emoji: '🌊' },
-  { id: 'oven',     label: 'Из Печи',     emoji: '🔥' },
-  { id: 'grill',    label: 'Гриль',       emoji: '🍢' },
-  { id: 'sides',    label: 'Гарниры',     emoji: '🌾' },
-  { id: 'drinks',   label: 'Напитки',     emoji: '☕' },
+  { id: 'all',      label: 'Всё меню'    },
+  { id: 'european', label: 'Европейский' },
+  { id: 'eastern',  label: 'Восточный'   },
+  { id: 'panasian', label: 'Паназия'     },
+  { id: 'oven',     label: 'Из Печи'     },
+  { id: 'grill',    label: 'Гриль'       },
+  { id: 'sides',    label: 'Гарниры'     },
+  { id: 'drinks',   label: 'Напитки'     },
 ]
 
 const CHAPTER_META: Record<string, ChapterMeta> = {
@@ -316,23 +316,22 @@ const CSS = `
   .sm-bar::-webkit-scrollbar { display: none; }
   .sm-tab {
     flex-shrink: 0;
-    padding: 15px 16px;
+    padding: 16px 20px;
     font-family: var(--font-dm-sans, system-ui, sans-serif);
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 400;
-    letter-spacing: 1.5px;
+    letter-spacing: 2.5px;
     text-transform: uppercase;
     color: #B8AFA0;
     cursor: pointer;
     border: none;
     background: none;
-    border-bottom: 2px solid transparent;
-    transition: color 0.2s, border-color 0.2s;
+    border-bottom: 1px solid transparent;
+    transition: color 0.25s, border-color 0.25s;
     white-space: nowrap;
   }
   .sm-tab:hover { color: #F5F0E8; }
   .sm-tab-on { color: #C9A84C !important; border-bottom-color: #C9A84C !important; }
-  .sm-tab-emoji { margin-right: 5px; font-style: normal; }
 
   /* ── CONTENT WRAPPER ── */
   .sm-content {
@@ -566,7 +565,6 @@ export default function MenuContent() {
                 className={`sm-tab${activeChapter === ch.id ? ' sm-tab-on' : ''}`}
                 onClick={() => setActiveChapter(ch.id)}
               >
-                <span className="sm-tab-emoji">{ch.emoji}</span>
                 {ch.label}
               </button>
             ))}
