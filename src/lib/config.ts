@@ -16,6 +16,3 @@ export const TELEGRAM_URL = 'https://t.me/Sukoon_cafe'
 export const WORKING_HOURS = [
   { days: 'Ежедневно', hours: '08:00 – 23:00' },
 ]
-
-export const LOGO_GOLD_FILTER =
-  'brightness(0) saturate(100%) invert(72%) sepia(40%) saturate(700%) hue-rotate(5deg) brightness(0.95)'

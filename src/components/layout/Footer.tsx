@@ -3,7 +3,6 @@ import Image from 'next/image'
 import { Send, MapPin, Phone, Clock } from 'lucide-react'
 import { InstagramIcon } from '@/components/ui/icons'
 import {
-  LOGO_GOLD_FILTER,
   RESTAURANT_ADDRESS,
   RESTAURANT_PHONE,
   INSTAGRAM_URL,
@@ -28,12 +27,11 @@ export default function Footer() {
             <Link href="/" className="flex items-center gap-3 w-fit">
               <div className="relative h-10 w-10">
                 <Image
-                  src="/logo/sukoon-logo.jpg"
+                  src="/logo/sukoon-logo.png"
                   alt="Sukoon"
                   fill
                   sizes="40px"
                   className="object-contain"
-                  style={{ filter: LOGO_GOLD_FILTER }}
                 />
               </div>
               <div className="flex flex-col leading-tight">

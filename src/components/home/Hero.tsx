@@ -4,7 +4,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
-import { LOGO_GOLD_FILTER } from '@/lib/config'
 import { buttonVariants } from '@/components/ui/Button'
 
 const container = {
@@ -45,15 +44,15 @@ export default function Hero() {
         animate="show"
       >
         {/* Logo mark */}
-        <motion.div variants={item} className="flex justify-center mb-6">
-          <div className="relative h-20 w-20">
+        <motion.div variants={item} className="flex justify-center mb-8">
+          <div className="relative h-44 w-44">
             <Image
-              src="/logo/sukoon-logo.jpg"
+              src="/logo/sukoon-logotext.png"
               alt="Sukoon"
               fill
-              sizes="80px"
+              sizes="176px"
               className="object-contain drop-shadow-2xl"
-              style={{ filter: LOGO_GOLD_FILTER }}
+              priority
             />
           </div>
         </motion.div>

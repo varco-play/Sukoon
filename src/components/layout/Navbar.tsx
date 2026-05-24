@@ -5,7 +5,6 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { Menu, X } from 'lucide-react'
-import { LOGO_GOLD_FILTER } from '@/lib/config'
 
 const NAV_LINKS = [
   { href: '/',            label: 'Главная' },
@@ -38,14 +37,13 @@ export default function Navbar() {
       <div className="container-site h-20 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3 group" aria-label="Sukoon — на главную">
-          <div className="relative h-10 w-10 overflow-hidden">
+          <div className="relative h-10 w-10">
             <Image
-              src="/logo/sukoon-logo.jpg"
+              src="/logo/sukoon-logo.png"
               alt="Sukoon Cafe"
               fill
               sizes="40px"
               className="object-contain"
-              style={{ filter: LOGO_GOLD_FILTER }}
             />
           </div>
           <div className="flex flex-col leading-tight">
