@@ -27,31 +27,31 @@ export const MOCK_REVIEWS: Review[] = [
 export const FEATURED_DISHES: Dish[] = [
   {
     id: '1',
-    name: 'Ягнёнок с розмарином',
-    description: 'Томлёное плечо ягнёнка с ароматными травами, запечёнными корнеплодами и соусом из красного вина',
-    imageUrl: 'https://images.unsplash.com/photo-1544025162-d76694265947?w=800&q=80',
+    name: 'Рибай-стейк',
+    description: 'Сочный рибай на косточке, подаётся с гарниром на выбор и фирменным соусом от шефа',
+    imageUrl: 'https://images.unsplash.com/photo-1706650616334-97875fae8521?w=800&q=80',
     category: 'Горячее',
   },
   {
     id: '2',
-    name: 'Камбала на углях',
-    description: 'Свежая камбала на мангале с лимонным маслом, каперсами и микрозеленью',
-    imageUrl: 'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=800&q=80',
-    category: 'Рыба и морепродукты',
+    name: 'Филе лосося',
+    description: 'Нежное филе лосося в азиатском маринаде с кунжутом, имбирём и соусом терияки',
+    imageUrl: 'https://images.unsplash.com/photo-1712334562767-5d366d0c40d9?w=800&q=80',
+    category: 'Паназия',
   },
   {
     id: '3',
-    name: 'Тартар из говядины',
-    description: 'Мраморная говядина ручной рубки, перепелиный желток, трюфельное масло и поджаренный бриошь',
-    imageUrl: 'https://images.unsplash.com/photo-1600891964092-4316c288032e?w=800&q=80',
-    category: 'Закуска',
+    name: 'Баранья корейка',
+    description: 'Корейка молодого барашка на углях с ароматными травами и соусом из граната',
+    imageUrl: 'https://images.unsplash.com/photo-1692106914421-e04e1066bd62?w=800&q=80',
+    category: 'Гриль',
   },
   {
     id: '4',
-    name: 'Шоколадный фондан',
-    description: 'Тёплый бельгийский шоколад с жидкой сердцевиной, ванильное мороженое и карамельный соус',
-    imageUrl: 'https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=800&q=80',
-    category: 'Десерт',
+    name: 'Хачапури по-аджарски',
+    description: 'Лодочка из дрожжевого теста с сулугуни, сливочным маслом и яйцом',
+    imageUrl: 'https://images.unsplash.com/photo-1612950365098-e3914d82ee85?w=800&q=80',
+    category: 'Из Печи',
   },
 ]
 
@@ -63,8 +63,8 @@ export const GALLERY_IMAGES: GalleryImage[] = [
   },
   {
     id: '2',
-    src: 'https://images.unsplash.com/photo-1544025162-d76694265947?w=800&q=80',
-    alt: 'Фирменное блюдо из ягнёнка',
+    src: 'https://images.unsplash.com/photo-1706650616334-97875fae8521?w=800&q=80',
+    alt: 'Рибай-стейк с гарниром',
   },
   {
     id: '3',
@@ -73,13 +73,13 @@ export const GALLERY_IMAGES: GalleryImage[] = [
   },
   {
     id: '4',
-    src: 'https://images.unsplash.com/photo-1559339352-11d035aa65de?w=800&q=80',
-    alt: 'Коктейльный бар',
+    src: 'https://images.unsplash.com/photo-1671048116858-e8ef69175b2d?w=800&q=80',
+    alt: 'Палов — классика узбекской кухни',
   },
   {
     id: '5',
-    src: 'https://images.unsplash.com/photo-1481931098730-318b6f776db0?w=800&q=80',
-    alt: 'Изысканная подача десертов',
+    src: 'https://images.unsplash.com/photo-1712334562767-5d366d0c40d9?w=800&q=80',
+    alt: 'Филе лосося в азиатском маринаде',
   },
   {
     id: '6',
@@ -88,13 +88,33 @@ export const GALLERY_IMAGES: GalleryImage[] = [
   },
   {
     id: '7',
+    src: 'https://images.unsplash.com/photo-1626323109252-0adb3b46692b?w=800&q=80',
+    alt: 'Шашлык на мангале',
+  },
+  {
+    id: '8',
+    src: 'https://images.unsplash.com/photo-1546549032-9571cd6b27df?w=800&q=80',
+    alt: 'Паста Карбонара',
+  },
+  {
+    id: '9',
+    src: 'https://images.unsplash.com/photo-1692106914421-e04e1066bd62?w=800&q=80',
+    alt: 'Баранья корейка на гриле',
+  },
+  {
+    id: '10',
     src: 'https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?w=800&q=80',
     alt: 'Сервировка стола',
   },
   {
-    id: '8',
-    src: 'https://images.unsplash.com/photo-1600891964092-4316c288032e?w=800&q=80',
-    alt: 'Авторское блюдо шеф-повара',
+    id: '11',
+    src: 'https://images.unsplash.com/photo-1612950365098-e3914d82ee85?w=800&q=80',
+    alt: 'Хачапури по-аджарски',
+  },
+  {
+    id: '12',
+    src: 'https://images.unsplash.com/photo-1504973960431-1c467e159aa4?w=800&q=80',
+    alt: 'Стейк medium rare',
   },
 ]
 
