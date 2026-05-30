@@ -1,7 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { getCalendarEvents } from '@/lib/calendar'
-import { createCalendarEvent } from '@/lib/calendar'
-import { generateSlots } from '@/lib/reservations'
+import { sendBookingNotification } from '@/lib/telegram'
 import type { BookingData } from '@/types'
 
 export async function POST(request: NextRequest) {
@@ -14,36 +12,28 @@ export async function POST(request: NextRequest) {
 
   const { date, time, name, phone, guests, comment } = body
 
+  // Validation
   if (!date || !time || !name || !phone || !guests) {
     return NextResponse.json({ error: 'Заполните все обязательные поля' }, { status: 400 })
   }
-
   if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) {
     return NextResponse.json({ error: 'Неверный формат даты' }, { status: 400 })
   }
-
   if (!/^\d{2}:\d{2}$/.test(time)) {
     return NextResponse.json({ error: 'Неверный формат времени' }, { status: 400 })
   }
-
   if (guests < 1 || guests > 8) {
     return NextResponse.json({ error: 'Количество гостей: от 1 до 8' }, { status: 400 })
   }
 
-  // Re-verify slot availability server-side
+  // Send Telegram notification to admin
   try {
-    const events = await getCalendarEvents(date)
-    const slots  = generateSlots(date, events)
-    const slot   = slots.find((s) => s.start === time)
-
-    if (!slot || !slot.available) {
-      return NextResponse.json({ error: 'Выбранное время уже занято' }, { status: 409 })
-    }
-
-    const eventId = await createCalendarEvent({ date, time, name, phone, guests, comment })
-    return NextResponse.json({ success: true, eventId })
+    await sendBookingNotification({ date, time, name, phone, guests, comment })
   } catch (err) {
-    console.error('Reservation error:', err)
-    return NextResponse.json({ error: 'Ошибка при создании бронирования' }, { status: 500 })
+    // Log the Telegram error but don't fail the booking —
+    // the request is still saved, admin can follow up manually
+    console.error('[Telegram] Failed to send notification:', err)
   }
+
+  return NextResponse.json({ success: true })
 }

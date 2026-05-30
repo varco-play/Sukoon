@@ -58,7 +58,7 @@ export default function ReservationPage() {
 
       setBooking({ ...details, date: dateStr, time })
       goToStep('success')
-      toast.success('Бронирование подтверждено!')
+      toast.success('Заявка отправлена!')
     } catch {
       toast.error('Ошибка соединения. Попробуйте ещё раз.')
     } finally {
@@ -205,10 +205,13 @@ export default function ReservationPage() {
                   transition={{ delay: 0.3, duration: 0.6 }}
                 >
                   <h2 className="font-display text-3xl md:text-4xl text-brand-cream mb-2">
-                    Бронирование подтверждено
+                    Заявка принята
                   </h2>
-                  <p className="font-sans text-brand-cream-muted text-sm mb-8">
-                    Ждём вас в Sukoon Cafe. До встречи!
+                  <p className="font-sans text-brand-cream-muted text-sm mb-2">
+                    Ваша заявка на бронирование отправлена.
+                  </p>
+                  <p className="font-sans text-brand-gold text-sm mb-8">
+                    Наш администратор свяжется с вами по телефону для подтверждения.
                   </p>
 
                   <GoldDivider ornament className="max-w-xs mx-auto mb-8" />
