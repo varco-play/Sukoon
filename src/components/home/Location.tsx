@@ -28,11 +28,11 @@ export default function Location() {
             transition={{ duration: 0.7, ease: "easeOut" }}
           >
             <div className="relative h-80 md:h-96 bg-brand-green border border-brand-gold/20 overflow-hidden">
-              {/* Placeholder for Google Maps iframe */}
+              {/* Yandex Maps — verified Sukoon business listing */}
               <iframe
                 title="Sukoon Cafe на карте"
-                src="https://maps.google.com/maps?q=Astrobod+84M,+Yunusabad,+Tashkent,+Uzbekistan&t=m&z=16&output=embed&iwloc=near"
-                className="w-full h-full grayscale opacity-70 border-0"
+                src="https://yandex.ru/map-widget/v1/org/sukoon/233243601791/?ll=69.273349%2C41.369470&z=16"
+                className="w-full h-full border-0"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
               />
