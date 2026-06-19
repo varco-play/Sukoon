@@ -41,20 +41,20 @@ export default function Highlights() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-brand-gold/10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-px md:bg-brand-gold/10">
           {pillars.map(({ Icon, title, body }, i) => (
             <motion.div
               key={title}
-              className="bg-brand-green-dark p-10 md:p-12 flex flex-col items-center text-center group hover:bg-brand-green-mid transition-colors duration-300"
+              className="bg-brand-green-dark border border-brand-gold/10 md:border-0 px-7 py-8 md:p-12 flex flex-col items-center text-center group hover:bg-brand-green-mid transition-colors duration-300"
               initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: i * 0.12, ease: "easeOut" }}
             >
               {/* Gold accent bar */}
-              <div className="w-8 h-px bg-brand-gold mb-6 group-hover:w-16 transition-all duration-500" />
-              <Icon className="text-brand-gold mb-5" size={28} strokeWidth={1.5} />
-              <h3 className="font-display text-xl text-brand-cream mb-3">{title}</h3>
-              <p className="font-sans text-brand-cream-muted text-sm leading-relaxed">{body}</p>
+              <div className="w-8 h-px bg-brand-gold mb-5 md:mb-6 group-hover:w-16 transition-all duration-500" />
+              <Icon className="text-brand-gold mb-4 md:mb-5" size={28} strokeWidth={1.5} />
+              <h3 className="font-display text-xl text-brand-cream mb-2.5 md:mb-3">{title}</h3>
+              <p className="font-sans text-brand-cream-muted text-sm leading-relaxed max-w-xs">{body}</p>
             </motion.div>
           ))}
         </div>

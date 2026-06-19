@@ -61,6 +61,27 @@
   background: #E5C87A;
 }
 
+/* Hero Ken Burns — slow, subtle cinematic zoom */
+@keyframes kenburns {
+  0%   { transform: scale(1)    translateY(0); }
+  100% { transform: scale(1.12) translateY(-1.5%); }
+}
+.animate-kenburns {
+  animation: kenburns 26s ease-out forwards;
+  will-change: transform;
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .animate-kenburns { animation: none; }
+}
+
 /* Botanical SVG pattern for green sections */
 .bg-botanical {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cpath d='M60 10 C60 10 40 30 40 50 C40 70 60 80 60 80 C60 80 80 70 80 50 C80 30 60 10 60 10Z' fill='none' stroke='%23C9A84C' stroke-width='0.8' opacity='0.6'/%3E%3Cpath d='M30 40 C30 40 15 55 20 70 C25 85 40 85 40 85' fill='none' stroke='%23C9A84C' stroke-width='0.6' opacity='0.4'/%3E%3Cpath d='M90 40 C90 40 105 55 100 70 C95 85 80 85 80 85' fill='none' stroke='%23C9A84C' stroke-width='0.6' opacity='0.4'/%3E%3Ccircle cx='60' cy='95' r='2' fill='%23C9A84C' opacity='0.3'/%3E%3C/svg%3E");

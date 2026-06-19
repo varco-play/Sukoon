@@ -21,13 +21,13 @@ export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background image */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0 overflow-hidden">
         <Image
           src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1920&q=85"
           alt="Sukoon Cafe интерьер"
           fill
           priority
-          className="object-cover object-center"
+          className="object-cover object-center animate-kenburns"
           sizes="100vw"
         />
       </div>

@@ -5,6 +5,8 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { Menu, X } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { RESTAURANT_PHONE_DISPLAY } from '@/lib/config'
 
 const NAV_LINKS = [
   { href: '/',            label: 'Главная' },
@@ -26,17 +28,24 @@ export default function Navbar() {
 
   useEffect(() => setMobileOpen(false), [pathname])
 
+  // Lock body scroll while the full-screen menu is open
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? 'hidden' : ''
+    return () => { document.body.style.overflow = '' }
+  }, [mobileOpen])
+
   return (
+    <>
     <header
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${
-        scrolled
+        scrolled && !mobileOpen
           ? 'bg-brand-green-dark/96 backdrop-blur-md shadow-[0_2px_30px_rgba(0,0,0,0.6)]'
           : 'bg-transparent'
       }`}
     >
       <div className="container-site h-20 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-3 group" aria-label="Sukoon — на главную">
+        <Link href="/" className="flex items-center gap-3 group relative z-[60]" aria-label="Sukoon — на главную">
           <div className="relative h-10 w-10">
             <Image
               src="/logo/sukoon-logo.png"
@@ -83,44 +92,82 @@ export default function Navbar() {
 
         {/* Mobile hamburger */}
         <button
-          className="md:hidden text-brand-cream p-2"
+          className="md:hidden text-brand-cream p-2 relative z-[60]"
           onClick={() => setMobileOpen((v) => !v)}
           aria-label={mobileOpen ? 'Закрыть меню' : 'Открыть меню'}
         >
-          {mobileOpen ? <X size={22} /> : <Menu size={22} />}
+          {mobileOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
-
-      {/* Mobile menu */}
-      <div
-        className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
-          mobileOpen ? 'max-h-96 border-t border-brand-gold/20' : 'max-h-0'
-        } bg-brand-green-dark/98 backdrop-blur-md`}
-      >
-        <nav className="container-site py-6 flex flex-col gap-1">
-          {NAV_LINKS.map((link, i) => {
-            const isActive = pathname === link.href
-            return (
-              <Link
-                key={link.href}
-                href={link.href}
-                style={{ transitionDelay: mobileOpen ? `${i * 50}ms` : '0ms' }}
-                className={`font-sans text-sm tracking-widest uppercase py-3 border-b border-brand-gold/10 transition-colors duration-200 ${
-                  isActive ? 'text-brand-gold' : 'text-brand-cream-muted hover:text-brand-cream'
-                }`}
-              >
-                {link.label}
-              </Link>
-            )
-          })}
-          <Link
-            href="/reservation"
-            className="mt-4 font-sans text-xs tracking-widest uppercase border border-brand-gold text-brand-gold px-5 py-3 text-center hover:bg-brand-gold hover:text-brand-green-dark transition-all duration-200"
-          >
-            Забронировать стол
-          </Link>
-        </nav>
-      </div>
     </header>
+
+    {/* Mobile full-screen overlay menu — sibling of header so `fixed` fills the
+        viewport (header's backdrop-blur would otherwise trap it). Sits at z-40,
+        below the header bar at z-50, keeping the logo + close button on top. */}
+    <AnimatePresence>
+      {mobileOpen && (
+        <motion.div
+          key="mobile-overlay"
+          className="md:hidden fixed inset-0 z-40 bg-brand-green-dark"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3, ease: 'easeOut' }}
+          >
+            {/* Botanical texture + radial gold glow */}
+            <div className="absolute inset-0 bg-botanical opacity-[0.04] pointer-events-none" />
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{ background: 'radial-gradient(ellipse 70% 50% at 50% 35%, rgba(201,168,76,0.10) 0%, transparent 70%)' }}
+            />
+
+            <nav className="relative h-full flex flex-col items-center justify-center gap-2 px-8">
+              {NAV_LINKS.map((link, i) => {
+                const isActive = pathname === link.href
+                return (
+                  <motion.div
+                    key={link.href}
+                    initial={{ opacity: 0, y: 24 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 12 }}
+                    transition={{ duration: 0.4, delay: 0.12 + i * 0.07, ease: 'easeOut' }}
+                  >
+                    <Link
+                      href={link.href}
+                      className={`block font-display text-4xl py-3 transition-colors duration-200 ${
+                        isActive ? 'text-brand-gold' : 'text-brand-cream hover:text-brand-gold'
+                      }`}
+                    >
+                      {link.label}
+                    </Link>
+                  </motion.div>
+                )
+              })}
+
+              <motion.div
+                initial={{ opacity: 0, y: 24 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.4, delay: 0.12 + NAV_LINKS.length * 0.07, ease: 'easeOut' }}
+                className="mt-8 flex flex-col items-center gap-6"
+              >
+                <Link
+                  href="/reservation"
+                  className="font-sans text-xs tracking-[0.25em] uppercase border border-brand-gold text-brand-gold px-10 py-4 hover:bg-brand-gold hover:text-brand-green-dark transition-all duration-200"
+                >
+                  Забронировать стол
+                </Link>
+                <a
+                  href={`tel:${RESTAURANT_PHONE_DISPLAY.replace(/\s/g, '')}`}
+                  className="font-sans text-sm text-brand-cream-muted tracking-wide hover:text-brand-gold transition-colors"
+                >
+                  {RESTAURANT_PHONE_DISPLAY}
+                </a>
+              </motion.div>
+          </nav>
+        </motion.div>
+      )}
+    </AnimatePresence>
+    </>
   )
 }
